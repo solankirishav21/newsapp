@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Newsitems from './Newsitems'
+// import InfiniteScroll from "react-infinite-scroll-component";
 
 export class News extends Component {
     constructor(){
@@ -7,11 +8,14 @@ export class News extends Component {
         this.state  ={
             articles : [],
             loading : false,
-            page : 1
+            page : 1,
+            totalArt : 0
         }
     }
-    async componentDidMount(props){
-        let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=75db1db2637048cfbfb6f830a1383ee0&pageSize=10`;
+
+
+    async componentDidMount(){
+        let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=75db1db2637048cfbfb6f830a1383ee0&pageSize=9`;
         let data = await fetch(url);
         let parsData = await data.json();
         this.setState({
@@ -19,8 +23,8 @@ export class News extends Component {
             totalArt : parsData.totalResults
         })
     }
-    handlePrevPage = async (props) => {
-        let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=75db1db2637048cfbfb6f830a1383ee0&page=${this.state.page - 1}&pageSize=10`;
+    handlePrevPage = async () => {
+        let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=75db1db2637048cfbfb6f830a1383ee0&page=${this.state.page - 1}&pageSize=9`;
         let data = await fetch(url);
         let parsData = await data.json();
         this.setState({
@@ -29,10 +33,10 @@ export class News extends Component {
         })
 
     }
-    handleNextPage = async (props) => {
+    handleNextPage = async () => {
         // console.log("right"); 
      
-            let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=75db1db2637048cfbfb6f830a1383ee0&page=${this.state.page + 1}&pageSize=10`;
+            let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=75db1db2637048cfbfb6f830a1383ee0&page=${this.state.page + 1}&pageSize=9`;
             let data = await fetch(url);
             let parsData = await data.json();
             this.setState({
@@ -41,10 +45,12 @@ export class News extends Component {
             })
         
     }
+   
     render() {
         return (
             <div className="container my-4">
                <center><h1>NewsMan - Top Headlines</h1></center> 
+
                 <div className="row my-3">
                     {this.state.articles.map ((element) => {
                         return  <div className="col-md-4 " key={element.url}>
@@ -52,6 +58,7 @@ export class News extends Component {
                     </div>
                     })}
                 </div>
+  
                 <div className="d-flex justify-content-between">
                     <button disabled={this.state.page <= 1} type="button" className="btn btn-primary btn-sm" onClick={this.handlePrevPage}>&larr; Previous</button>
                     <button disabled =  {this.state.page>=4} type="button" className="btn btn-primary btn-sm" onClick={this.handleNextPage}>Next &rarr;</button>
