@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 
 export class Navbar extends Component {
@@ -7,9 +8,9 @@ export class Navbar extends Component {
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-3">
           <div className="container-fluid">
-            <a className="navbar-brand" href="/">
+            <Link className="navbar-brand" to="/">
               NewsMan
-            </a>
+            </Link>
             <button
               className="navbar-toggler"
               type="button"
@@ -23,30 +24,30 @@ export class Navbar extends Component {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div className="navbar-nav">
-                <a className="nav-link active mx-3" aria-current="page" href="/home">
+                <Link className="nav-link active mx-3" aria-current="page" to="/">
                   Home
-                </a>
-                <a className="nav-link active mx-3" aria-current="page" href="/general">
+                </Link>
+                <Link className="nav-link active mx-3" aria-current="page" to="/general">
                   General
-                </a>
-                <a className="nav-link active mx-3" aria-current="page" href="/business">
+                </Link>
+                <Link className="nav-link active mx-3" aria-current="page" to="/business">
                   Business
-                </a>
-                <a className="nav-link active mx-3" aria-current="page" href="/sports">
+                </Link>
+                <Link className="nav-link active mx-3" aria-current="page" to="/sports">
                   Sports
-                </a>
-                <a className="nav-link active mx-3" aria-current="page" href="/entertainment">
+                </Link>
+                <Link className="nav-link active mx-3" aria-current="page" to="/entertainment">
                   Entertainment
-                </a>
-                <a className="nav-link active mx-3" aria-current="page" href="/health">
+                </Link>
+                <Link className="nav-link active mx-3" aria-current="page" to="/health">
                   Health
-                </a>
-                <a className="nav-link active mx-3" aria-current="page" href="/science">
+                </Link>
+                <Link className="nav-link active mx-3" aria-current="page" to="/science">
                   Science
-                </a>
-                <a className="nav-link active mx-3" aria-current="page" href="/technology">
+                </Link>
+                <Link className="nav-link active mx-3" aria-current="page" to="/technology">
                   Technology
-                </a>
+                </Link>
               </div>
             </div>
           </div>
